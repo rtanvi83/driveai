@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { car_arr } from "../components/array"
 import { CarCard, Features, BookingForm, Comparison } from "../components/component"
 
@@ -11,6 +11,11 @@ const Dashboard = () => {
     const [compareCars, setCompareCars] = useState([])
 
     const [formData, setFormData] = useState({ model: "", date: "", city: "" })
+    const chatRef: any = useRef()
+
+    useEffect(() => {
+        chatRef.current?.scrollTo(0, chatRef.current.scrollHeight)
+    }, [messages])
 
     const handleAIAction = (intent: any) => {
         if (!intent) return
@@ -27,7 +32,7 @@ const Dashboard = () => {
         }
 
         if (intent.type === "RECOMMEND") {
-            const updated = car_arr.map((c) => ({
+            const updated = car_arr.map((c: any) => ({
                 ...c,
                 highlight: c.car.seats >= 7
             }))
@@ -50,9 +55,7 @@ const Dashboard = () => {
 
         if (intent.type === "SCROLL") {
             setTimeout(() => {
-                document.getElementById(intent.section)?.scrollIntoView({
-                    behavior: "smooth"
-                })
+                document.getElementById(intent.section)?.scrollIntoView({ behavior: "smooth" })
             }, 100)
         }
 
@@ -62,8 +65,12 @@ const Dashboard = () => {
                 .slice(0, 2)
 
             setCompareCars(top2)
+
             setTimeout(() => {
-                document.getElementById("compare")?.scrollIntoView({ behavior: "smooth" })
+                const el = document.getElementById("compare")
+                el?.scrollIntoView({ behavior: "smooth" })
+                el?.classList.add("ring-4", "ring-cyan-400")
+                setTimeout(() => el?.classList.remove("ring-4"), 1500)
             }, 200)
         }
     }
@@ -97,15 +104,19 @@ const Dashboard = () => {
     return (
         <>
             <section className="relative h-screen w-full overflow-hidden text-white">
+
                 <img
                     src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
                     className="absolute w-full h-full object-cover"
                 />
 
+                {/* DARK OVERLAY */}
                 <div className="absolute inset-0 bg-black/70" />
+
+                {/* GLOW EFFECT */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-cyan-500/20 blur-[120px] rounded-full" />
 
-                <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+                <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
 
                     <h1 className="text-6xl md:text-7xl font-bold">
                         Drive <span className="text-cyan-400">Intelligence</span>
@@ -115,17 +126,12 @@ const Dashboard = () => {
                         AI-powered cars for a smarter journey
                     </p>
 
-                    {/* BUTTONS */}
                     <div className="mt-8 flex gap-4">
-                        <button
-                            onClick={() =>
-                                document.getElementById("models")?.scrollIntoView({ behavior: "smooth" })
-                            }
-                            className="bg-cyan-400 text-black px-6 py-3 rounded-full font-semibold"
-                        >
+                        <button className="bg-cyan-400 text-black px-6 py-3 rounded-full">
                             Explore Models
                         </button>
                     </div>
+
                 </div>
             </section>
 
@@ -141,13 +147,15 @@ const Dashboard = () => {
                 <CarCard data={cars} currency={currency} />
             </section>
 
-            <section id="features">
+            <section id="features" className="bg-black text-white py-24 px-6">
                 <Features />
             </section>
 
-            <section id="compare">
-                {compareCars.length > 0 && <Comparison cars={compareCars} currency={currency} />}
-            </section>
+            {compareCars.length > 0 &&
+                <section id="compare" className="bg-black text-white py-24 px-6">
+                    <Comparison cars={compareCars} currency={currency} />
+                </section>
+            }
 
             <BookingForm
                 formData={formData}
@@ -218,6 +226,10 @@ const Dashboard = () => {
                     </div>
                 </div>
             )}
+
+            <footer className="bg-black text-gray-400 text-center py-6">
+                © 2026 DriveAI. Built with AI-powered UI.
+            </footer>
         </>
     )
 }
