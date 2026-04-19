@@ -1,98 +1,102 @@
 # DriveAI 🚗 — AI-Navigated Car Website
 
-## 🔗 Live
+## Live
 
-* Frontend: https://your-vercel-url
+* Frontend: https://driveai-brown.vercel.app/
 * Backend: https://driveai-4gj8.onrender.com
-
-## 🧠 Concept
-
-DriveAI is a single-page car dealership where a persistent AI assistant understands user queries and **actively controls the UI**—scrolling to sections, filtering cars, updating pricing, highlighting models, and pre-filling the booking form.
 
 ---
 
-## ⚙️ Tech Stack (and why)
+## Concept
 
-* **React (Vite)** — fast SPA, easy state control for UI actions
-* **Tailwind CSS** — rapid, consistent UI styling
-* **Node.js + Express** — lightweight API for intent detection
-* **(Optional) OpenAI/Groq** — natural language replies (free tier)
+DriveAI is a single-page car dealership where a persistent assistant interprets user queries and **directly controls the UI**—scrolling to sections, filtering models, updating pricing, highlighting cars, and pre-filling the booking form.
+
+Instead of relying on external AI APIs, the system uses **rule-based intent detection** to ensure predictable and responsive UI behavior.
+
+---
+
+## Tech Stack (and why)
+
+* **React (Vite)** — fast SPA with efficient state management
+* **Tailwind CSS** — quick, consistent UI styling
+* **Node.js + Express** — lightweight backend for intent handling
 * **Deployment:** Vercel (frontend), Render (backend)
 
 ---
 
-## ✨ Features
+## Features
 
 * Horizontal model carousel (snap + hidden scrollbar)
-* Premium hero + features + booking sections
-* AI assistant (floating chat) with quick queries
-* Smooth scrolling + visual highlight on actions
+* Modern hero, features, and booking sections
+* Floating AI assistant with quick query buttons
+* Smooth scrolling + visual highlight feedback
 * Comparison view (top 2 models)
 * Booking form auto-fill
 * Currency switch (INR ↔ USD)
 
 ---
 
-## 🧩 Supported Queries (6+)
+## Supported Queries
 
 1. **Filter**
 
    * “Show SUVs under 20 lakhs”
-   * Filters grid + scrolls to models
+     → Filters models + scrolls to section
 
 2. **Compare**
 
    * “Compare top models”
-   * Loads top 2 cars + scrolls to comparison
+     → Displays comparison + auto-scroll
 
 3. **Book**
 
    * “Book test drive for Terra Pro in Kochi”
-   * Prefills form + scrolls to booking
+     → Auto-fills form + scrolls
 
 4. **Recommend**
 
    * “Best car for family”
-   * Highlights suitable model(s)
+     → Highlights suitable models
 
 5. **Currency**
 
    * “Show prices in USD”
-   * Updates all prices live
+     → Updates pricing dynamically
 
 6. **Navigation**
 
    * “Show features section”
-   * Scrolls to section + highlight
+     → Scrolls to section with visual highlight
 
 ---
 
-## 🏗️ Setup
+## Setup
 
 ```bash
 # frontend
-cd client
+cd frontend
 npm install
 npm run dev
 
 # backend
-cd server
+cd backend
 npm install
 npm run dev
 ```
 
-Create `.env` in server:
+Create `.env` in backend:
 
 ```
 PORT=5000
-# OPENAI_API_KEY=...
 ```
 
 ---
 
-## 🔌 API
+## API
 
-POST `/ai`
+**POST /ai**
+
+Request:
 
 ```json
 { "query": "Show SUVs under 20 lakhs" }
@@ -109,9 +113,12 @@ Response:
 
 ---
 
-## 🔮 If I had more time
+## AI Approach
 
-* Voice input (speech-to-text)
-* Better NLP (entity extraction for city/date)
-* Saved comparisons + shareable links
-* Accessibility improvements
+The assistant uses **rule-based intent detection** (keyword + pattern matching) to map user queries to UI actions.
+
+This approach ensures:
+
+* Fast response time
+* Predictable behavior
+* Tight control over UI interactions

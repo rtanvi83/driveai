@@ -1,18 +1,12 @@
-# LEARNINGS.md
-
-This project taught me how to connect AI-like behavior to UI actions rather than just returning text.
+This project helped me understand how AI-like behavior can be achieved using structured logic instead of full AI models.
 
 Key learnings:
 
-* Simple intent detection (keywords + parsing) can be more reliable than full AI for deterministic UI control.
-* React state is asynchronous; I had to delay scroll actions until the DOM updated (setTimeout) to ensure correct navigation.
-* Designing UI for “AI control” required thinking in terms of actions (filter, scroll, highlight) instead of pages.
-* Small UX details (smooth scroll, highlights, chat positioning) significantly improved perceived intelligence.
+Mapping user queries to UI actions is more important than generating text responses
+React state updates are asynchronous, so timing matters when triggering scroll
+Small UI improvements like smooth scroll and highlights make the system feel intelligent
+Breaking down queries into intent types made the system easier to manage
 
-Challenges:
+I initially thought AI integration required external APIs, but I learned that for controlled UI behavior, rule-based logic is often more reliable.
 
-* Making multiple queries trigger different UI changes consistently
-* Preventing chat overflow and keeping UI clean
-* Ensuring all sections respond correctly to AI actions
-
-If I had more time, I would improve natural language understanding and add voice input.
+If I had more time, I would integrate a real AI model to improve natural language understanding.
