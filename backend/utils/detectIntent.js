@@ -30,5 +30,13 @@ export const detectIntent = (query) => {
         return { type: "SCROLL", section: "features" }
     }
 
+    if (q.includes("contact")) {
+        return { type: "SCROLL", section: "contact" }
+    }
+
+    if (q.includes("price") || q.includes("pricing")) {
+        return { type: "SCROLL", section: "pricing" }
+    }
+
     return { type: "UNKNOWN" }
 }

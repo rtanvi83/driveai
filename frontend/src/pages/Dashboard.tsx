@@ -157,6 +157,24 @@ const Dashboard = () => {
                 </section>
             }
 
+            <section id="pricing" className="bg-[#0B0B0F] text-white py-20 text-center">
+                <h2 className="text-4xl font-bold mb-10">Pricing</h2>
+
+                <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+                    {cars.slice(0, 3).map((c, i) => (
+                        <div key={i} className="bg-[#111] p-6 rounded-xl">
+                            <h3 className="text-xl font-semibold">{c.car.name}</h3>
+                            <p className="text-gray-400">{c.car.type}</p>
+                            <p className="text-cyan-400 mt-3 text-lg font-bold">
+                                ₹{c.car.price}
+                            </p>
+                        </div>
+                    ))}
+
+                </div>
+            </section>
+
             <BookingForm
                 formData={formData}
                 setFormData={setFormData}
@@ -226,6 +244,20 @@ const Dashboard = () => {
                     </div>
                 </div>
             )}
+
+            <section id="contact" className="bg-black text-white py-20 text-center">
+                <h2 className="text-4xl font-bold mb-6">Contact Us</h2>
+
+                <p className="text-gray-400 mb-6">
+                    Have questions? Reach out to our team.
+                </p>
+
+                <div className="space-y-2">
+                    <p>Email: support@driveai.com</p>
+                    <p>Phone: +91 12345 67890</p>
+                    <p>Location: Nagpur, India</p>
+                </div>
+            </section>
 
             <footer className="bg-black text-gray-400 text-center py-6">
                 © 2026 DriveAI. Built with AI-powered UI.
