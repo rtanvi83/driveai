@@ -203,7 +203,7 @@ export const Comparison = ({ cars, currency }: any) => {
     return (
         <section id="compare" className="py-24 bg-[#0B0B0F] text-white px-6">
 
-            <h2 className="bg-[#111] border border-white/10 rounded-3xl p-6 hover:border-cyan-400 transition">
+            <h2 className="text-4xl font-bold text-center mb-10">
                 Compare Models
             </h2>
 
